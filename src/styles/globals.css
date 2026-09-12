@@ -4763,6 +4763,382 @@ button { cursor: pointer; }
 }
 .dashboard-back-link:hover { color: var(--green); }
 
+/* =========================================
+   AEROLEAF ENGINEERING INFOGRAPHIC SHOWCASE
+   ========================================= */
+.aeroleaf-infographic-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.infographic-view-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.infographic-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(20, 43, 34, 0.03);
+}
+.infographic-tab-btn:hover {
+  background: #ffffff;
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.infographic-tab-btn.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(45, 106, 77, 0.28);
+}
+
+.infographic-stage-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+}
+
+.stage-split-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+}
+.stage-visual-box {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #f8faf8;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(20, 43, 34, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+}
+.stage-main-img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+}
+.stage-main-img.contain {
+  object-fit: contain;
+  background: #ffffff;
+  padding: 12px;
+}
+.stage-visual-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 99px;
+  background: rgba(10, 24, 18, 0.85);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(74, 185, 126, 0.35);
+}
+
+.stage-copy-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.stage-header-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  background: var(--green-soft);
+  padding: 4px 12px;
+  border-radius: 99px;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.stage-copy-box h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+}
+.stage-copy-box p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.stage-parts-callout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 6px;
+}
+.part-callout {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--bg-soft);
+  border: 1px solid rgba(20, 43, 34, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.part-callout strong {
+  font-size: 0.84rem;
+  color: var(--ink);
+}
+.part-callout span {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.stage-footer-specs {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.stage-footer-specs div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stage-footer-specs small {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.stage-footer-specs strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--green-deep);
+  font-weight: 800;
+}
+
+/* Technical Specs Table inside Cross Section View */
+.technical-specs-table-card {
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+}
+.tech-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--bg-soft);
+  font-size: 0.82rem;
+}
+.tech-spec-row span {
+  color: var(--muted);
+  font-weight: 600;
+}
+.tech-spec-row strong {
+  color: var(--ink);
+  font-weight: 700;
+  text-align: right;
+}
+
+/* 6 Subsystem Modules View */
+.stage-components-suite {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.components-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+.component-tile-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.component-tile-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  box-shadow: 0 6px 16px rgba(45, 106, 77, 0.12);
+}
+.component-tile-card.selected {
+  border-color: var(--green);
+  background: #f0f8f3;
+  box-shadow: 0 0 0 2px var(--green), 0 8px 20px rgba(45, 106, 77, 0.18);
+}
+.tile-thumb-wrap {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.tile-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tile-num {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: rgba(10, 24, 18, 0.8);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.component-tile-card strong {
+  font-size: 0.78rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.tile-tag {
+  font-size: 0.68rem;
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.component-spotlight-panel {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(20, 43, 34, 0.04);
+}
+.spotlight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.spotlight-header h3 {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+.spotlight-thumb-large {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+}
+.spotlight-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+.spotlight-specs-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.spotlight-spec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Skyline Banner Card */
+.infographic-skyline-card {
+  background: linear-gradient(135deg, #0d2218 0%, #173d2b 100%);
+  color: #ffffff;
+  border-radius: 24px;
+  padding: 30px 36px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  align-items: center;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(74, 185, 126, 0.25);
+}
+.skyline-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b8e39c;
+  margin-bottom: 8px;
+}
+.skyline-copy h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+.skyline-copy p {
+  margin: 0;
+  color: #9db8a7;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.skyline-visual {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 150px;
+}
+.skyline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* SCADA Sidebar Mobile Drawer & Toggle */
 .scada-sidebar-backdrop {
   position: fixed;
@@ -5069,6 +5445,19 @@ button { cursor: pointer; }
   .spec-section,
   .technology-grid {
     grid-template-columns: 1fr;
+  }
+  .stage-split-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .components-tiles-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .infographic-skyline-card {
+    grid-template-columns: 1fr;
+  }
+  .stage-visual-box {
+    min-height: 320px;
   }
   .route-grid, .project-grid {
     grid-template-columns: 1fr;
@@ -5475,6 +5864,36 @@ button { cursor: pointer; }
   }
   .app-img-box {
     height: 180px;
+  }
+
+  /* Aeroleaf Infographic Mobile */
+  .infographic-stage-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  .components-tiles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .stage-parts-callout-grid {
+    grid-template-columns: 1fr;
+  }
+  .infographic-skyline-card {
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+  .spotlight-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .stage-footer-specs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .infographic-tab-btn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
   }
 
   /* Contact Form */

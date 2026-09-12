@@ -10,6 +10,7 @@ import { TreeCustomizer } from "./TreeCustomizer";
 import { WindTreeCalculator } from "./WindTreeCalculator";
 import { TechArchitectureDiagram } from "./TechArchitectureDiagram";
 import { SpecTabsSection } from "./SpecTabsSection";
+import { AeroleafInfographicSection } from "./AeroleafInfographicSection";
 import { WindSpeedGauge } from "./WindSpeedGauge";
 import { ApplicationsGrid } from "./ApplicationsGrid";
 import { clientLogos, projectCards, testimonials } from "./site-data";
@@ -276,6 +277,11 @@ export default function LandingPage() {
         {/* 4. AEROLEAF ANATOMY & FEATURE EXPLORER */}
         <Reveal className="section" id="aeroleaf">
           <TreeFeatureExplorer />
+        </Reveal>
+
+        {/* 4.1 INTERACTIVE AEROLEAF ENGINEERING INFOGRAPHIC */}
+        <Reveal className="section" id="engineering-infographic">
+          <AeroleafInfographicSection />
         </Reveal>
 
         {/* 5. POWER SECTION & PRODUCT LINEUP */}

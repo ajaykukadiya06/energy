@@ -3,6 +3,7 @@ import { SiteFooter } from "../../components/landing/SiteFooter";
 import { SiteHeader } from "../../components/landing/SiteHeader";
 import { VideoShowcase } from "../../components/landing/VideoShowcase";
 import { TreeFeatureExplorer } from "../../components/landing/TreeFeatureExplorer";
+import { AeroleafInfographicSection } from "../../components/landing/AeroleafInfographicSection";
 import { TreeCustomizer } from "../../components/landing/TreeCustomizer";
 import { WindTreeCalculator } from "../../components/landing/WindTreeCalculator";
 import {
@@ -40,6 +41,11 @@ export default function ProductPage() {
         {/* Anatomy & Feature Explorer */}
         <section className="route-section-block">
           <TreeFeatureExplorer />
+        </section>
+
+        {/* Detailed Engineering Infographic */}
+        <section className="route-section-block">
+          <AeroleafInfographicSection />
         </section>
 
         {/* 3D / Architectural Customizer */}
