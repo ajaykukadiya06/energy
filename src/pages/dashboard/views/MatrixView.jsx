@@ -90,7 +90,7 @@ export function MatrixView() {
               <h3>Aeroleaf® Unit #{selectedLeaf.id}</h3>
             </div>
             <img
-              src="/images/aeroleaf_single.png"
+              src="/images/aeroleaf_micro_generator.jpg"
               alt="Aeroleaf turbine unit"
               className="leaf-thumbnail-img"
             />

@@ -12,7 +12,7 @@ const MODELS = [
     peakPower: "300 W (48V PMG)",
     nominalPower: "160 W",
     footprint: "0.2 m²",
-    image: "/images/aeroleaf_single.png",
+    image: "/images/aeroleaf_micro_generator.jpg",
     description:
       "Ultra-compact vertical-axis micro-turbine with 360° wind capture. Mounts to rooftop railings, balconies, fence posts, and telecom masts.",
   },
@@ -25,7 +25,7 @@ const MODELS = [
     peakPower: "900 W (0.9 kW)",
     nominalPower: "490 W",
     footprint: "0.6 m²",
-    image: "/images/aeroleaf_dual.png",
+    image: "/images/aeroleaf_canopy_close.jpg",
     description:
       "Wall and pole-mountable 3-leaf branch cluster for boutique commercial balconies, perimeter security lighting, and corporate terraces.",
   },
