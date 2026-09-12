@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { DashboardSidebar } from "./components/DashboardSidebar";
 import { DashboardTopbar } from "./components/DashboardTopbar";
@@ -38,6 +38,7 @@ export default function DashboardPage() {
   const [stormBrakeActive, setStormBrakeActive] = useState(false);
   const [showCertificateModal, setShowCertificateModal] = useState(false);
   const [isSimulatingLive, setIsSimulatingLive] = useState(true);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // Live real-time telemetry fluctuations
   useEffect(() => {
@@ -124,6 +125,8 @@ export default function DashboardPage() {
         stormBrakeActive={stormBrakeActive}
         onOpenCertificate={() => setShowCertificateModal(true)}
         onLogout={handleLogout}
+        isOpenMobile={mobileSidebarOpen}
+        onCloseMobile={() => setMobileSidebarOpen(false)}
       />
 
       {/* RIGHT SIDE MAIN DASHBOARD COCKPIT */}
@@ -134,6 +137,7 @@ export default function DashboardPage() {
           stormBrakeActive={stormBrakeActive}
           onToggleStormBrake={() => setStormBrakeActive(!stormBrakeActive)}
           onOpenCertificate={() => setShowCertificateModal(true)}
+          onToggleMobileMenu={() => setMobileSidebarOpen(!mobileSidebarOpen)}
         />
 
         <main className="scada-content-body">

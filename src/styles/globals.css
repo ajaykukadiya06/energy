@@ -4763,77 +4763,927 @@ button { cursor: pointer; }
 }
 .dashboard-back-link:hover { color: var(--green); }
 
-/* SCADA Responsive Adjustments */
+/* SCADA Sidebar Mobile Drawer & Toggle */
+.scada-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(8, 20, 14, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+.scada-mobile-close-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: #ffffff;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.scada-mobile-close-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.scada-mobile-menu-btn {
+  display: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--green-soft);
+  border: 1px solid rgba(45, 106, 77, 0.2);
+  color: var(--green-deep);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.scada-mobile-menu-btn:hover {
+  background: var(--green);
+  color: #ffffff;
+}
+.scada-topbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+.scada-mobile-tabs-bar {
+  display: none;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 0 2px;
+  width: 100%;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.scada-mobile-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+.mobile-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: rgba(20, 43, 34, 0.06);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  border: 1px solid transparent;
+}
+.mobile-tab-pill:hover {
+  background: rgba(20, 43, 34, 0.1);
+  color: var(--ink);
+}
+.mobile-tab-pill.active {
+  background: var(--green);
+  color: #ffffff;
+  border-color: var(--green);
+  box-shadow: 0 2px 8px rgba(45, 106, 77, 0.25);
+}
+
+/* ESG Certificate Modal */
+.esg-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(8, 20, 14, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.esg-modal-card {
+  width: min(94vw, 560px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 30px 26px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalPop {
+  from { transform: scale(0.94); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.esg-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: none;
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+.modal-close-btn:hover {
+  background: #e2ede6;
+  color: var(--green-deep);
+}
+.esg-cert-body {
+  position: relative;
+  background: linear-gradient(135deg, #fbfdfc, #f3f8f5);
+  border: 1px solid rgba(45, 106, 77, 0.2);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cert-watermark-stamp {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  background: var(--green-soft);
+  padding: 4px 10px;
+  border-radius: 6px;
+  width: fit-content;
+}
+.cert-metrics-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.cert-metrics-table div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cert-metrics-table span {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.cert-metrics-table strong {
+  font-size: 0.88rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+.esg-modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* =========================================================
+   COMPREHENSIVE RESPONSIVE DESIGN SYSTEM (ALL BREAKPOINTS)
+   ========================================================= */
+
+/* Large Tablets & Small Laptops (<= 1200px) */
+@media (max-width: 1200px) {
+  .topbar {
+    width: calc(100% - 36px);
+  }
+  .tech-pipeline-strip {
+    max-width: 100%;
+    padding: 12px 16px;
+  }
+}
+
+/* Standard Tablet Breakpoint (<= 1024px) */
 @media (max-width: 1024px) {
-  .scada-sidebar { width: 220px; padding: 18px 12px; }
-  .scada-content-body { padding: 20px 20px 40px; }
-  .dashboard-login-container { grid-template-columns: 1fr; }
-  .login-visual-panel { display: none; }
-}
-@media (max-width: 768px) {
-  .scada-dashboard-app { flex-direction: column; }
-  .scada-sidebar { width: 100%; height: auto; position: static; }
-  .scada-topbar { padding: 14px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
-  .topbar-actions { width: 100%; justify-content: space-between; }
-  .microgrid-overview-grid, .weather-telemetry-grid, .analytics-summary-strip { grid-template-columns: 1fr; }
-}
-
-
-/* =========================================
-   RESPONSIVE MEDIA QUERIES
-   ========================================= */
-@media (max-width: 1080px) {
+  /* Layout Containers */
+  .hero, .section, .site-footer, .route-main {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
   .video-player-wrapper,
   .explorer-layout,
   .calculator-dashboard-card,
+  .configurator-main-grid,
   .customizer-studio-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
-  .preview-image-box { height: 320px; }
+  .configurator-summary-sidebar {
+    position: static;
+  }
+  .preview-image-box {
+    height: 300px;
+  }
+
+  /* SCADA Dashboard Tablet Adjustments */
+  .scada-dashboard-app {
+    flex-direction: column;
+    position: relative;
+  }
+  .scada-sidebar {
+    display: none;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(85vw, 320px);
+    height: 100vh;
+    z-index: 1000;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.45);
+  }
+  .scada-sidebar.is-mobile-open {
+    display: flex !important;
+    animation: slideInLeft 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes slideInLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  .scada-mobile-close-btn {
+    display: grid;
+  }
+  .scada-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scada-mobile-menu-btn {
+    display: grid;
+  }
+  .scada-mobile-tabs-bar {
+    display: flex;
+  }
+  .scada-topbar {
+    padding: 14px 24px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .scada-content-body {
+    padding: 24px 24px 60px;
+  }
+
+  /* Login Screen */
+  .dashboard-login-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  .login-visual-panel {
+    display: none;
+  }
+  .dashboard-login-card {
+    padding: 36px 28px;
+  }
 }
 
+/* Medium Tablets & Phablets (<= 980px) */
 @media (max-width: 980px) {
-  .hero, .section, .site-footer, .route-main { padding-left: 24px; padding-right: 24px; }
-  .topbar { padding: 10px 14px; }
+  /* Navigation */
   .desktop-only-nav { display: none; }
   .mobile-menu-toggle { display: flex; }
-  .benefit-layout, .contact-section, .route-feature, .order-layout { grid-template-columns: 1fr; }
-  .route-grid, .project-grid { grid-template-columns: 1fr; }
-  .metrics-grid, .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .logo-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .quote-banner, .site-footer, .route-cta { flex-direction: column; align-items: flex-start; }
-  .dashboard-overview, .dashboard-grid, .dashboard-bottom, .scada-twin-layout { grid-template-columns: 1fr; }
-  .dashboard-summary { grid-template-columns: repeat(3, 1fr); }
-  .technology-grid, .spec-section { grid-template-columns: 1fr; }
-  .innovation-roadmap { grid-template-columns: 1fr; }
+  .topbar { padding: 10px 16px; }
+
+  /* Grids & Cards */
+  .benefit-layout,
+  .contact-section,
+  .route-feature,
+  .order-layout,
+  .innovation-roadmap,
+  .spec-section,
+  .technology-grid {
+    grid-template-columns: 1fr;
+  }
+  .route-grid, .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .metrics-grid, .testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .logo-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .quote-banner, .route-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .quote-banner .primary-button, .route-cta .secondary-button {
+    width: 100%;
+    text-align: center;
+  }
+  .dashboard-overview, .dashboard-grid, .dashboard-bottom, .scada-twin-layout {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer Tablet */
+  .footer-clean-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .footer-hero-box {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+  }
+  .footer-hero-visual {
+    justify-content: flex-start;
+  }
+  .footer-visual-frame {
+    max-width: 100%;
+  }
+
+  /* Steppers & Pipelines */
+  .arch-pipeline-stepper {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .tech-pipeline-strip {
+    border-radius: 20px;
+    padding: 12px;
+    gap: 8px;
+  }
 }
 
-@media (max-width: 680px) {
-  .aeroleaf-matrix-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .topbar { width: calc(100% - 24px); margin-top: 10px; }
-  .topbar-fixed, .topbar-overlay { top: 10px; margin-top: 0; }
-  .brand-main { font-size: 1rem; letter-spacing: 0.16em; }
-  .hero { padding-top: 150px; }
-  .hero-copy h1 { font-size: 2.6rem; }
-  .hero-video-controls-badge { right: 24px; bottom: 24px; }
-  .cta-row { flex-direction: column; align-items: stretch; }
-  .nav-cta, .primary-button, .secondary-button { width: 100%; }
-  .benefit-visual img { height: 380px; }
-  .logo-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .metrics-grid, .testimonial-grid { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .section { padding-top: 64px; }
-  .route-main { padding-top: 96px; }
-  .route-cta { width: 100%; padding: 24px; }
-  .spec-table div { flex-direction: column; gap: 6px; }
-  .spec-table strong { text-align: left; }
-  .calculator-dashboard-card { padding: 20px; }
-  .calc-metrics-grid { grid-template-columns: 1fr; }
-  .calc-cta-footer { flex-direction: column; align-items: flex-start; }
-  .calc-cta-btn { width: 100%; text-align: center; }
-  .explorer-specs-grid { grid-template-columns: 1fr; }
-  .finish-swatches-grid { grid-template-columns: 1fr; }
-  .preview-quick-specs { grid-template-columns: repeat(2, 1fr); }
-  .hud-stats-cluster { display: none; }
-  .video-selector-tabs { width: 100%; overflow-x: auto; }
+/* Mobile Standard & Small Tablets (<= 768px) */
+@media (max-width: 768px) {
+  /* Spacing */
+  .hero, .section, .site-footer, .route-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .section {
+    padding-top: 72px;
+  }
+  .route-main {
+    padding-top: 100px;
+  }
+
+  /* Header */
+  .topbar {
+    width: calc(100% - 24px);
+    margin-top: 10px;
+  }
+  .topbar-fixed, .topbar-overlay {
+    top: 10px;
+  }
+  .topbar-cta-btn .nav-cta-text {
+    display: none;
+  }
+  .topbar-cta-btn {
+    padding: 8px 12px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 130px 18px 60px;
+    min-height: auto;
+  }
+  .hero-copy h1 {
+    font-size: clamp(2.3rem, 7.5vw, 3.4rem);
+  }
+  .hero-copy p {
+    font-size: 0.98rem;
+  }
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .hero-cta-btn, .hero-secondary-btn, .primary-button, .secondary-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Specs & Tab Bars */
+  .spec-tab-buttons-wrap {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .spec-tab-buttons-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .spec-tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+  .spec-tab-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  .spec-details-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* SCADA Dashboard Mobile */
+  .scada-topbar {
+    padding: 12px 16px;
+  }
+  .topbar-telemetry-pill {
+    padding: 5px 12px;
+    font-size: 0.76rem;
+  }
+  .topbar-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .topbar-brake-btn, .topbar-action-btn {
+    padding: 6px 12px;
+    font-size: 0.74rem;
+  }
+  .microgrid-overview-grid,
+  .weather-telemetry-grid,
+  .reading-grid {
+    grid-template-columns: 1fr;
+  }
+  .aeroleaf-matrix-grid.full-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    padding: 12px;
+  }
+  .scada-content-body {
+    padding: 16px 16px 50px;
+  }
+
+  /* Order Configurator Progress Bar */
+  .order-steps-progress {
+    gap: 6px;
+    padding: 8px 10px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .order-steps-progress::-webkit-scrollbar {
+    display: none;
+  }
+  .step-nav-item {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .step-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
 }
+
+/* Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  /* Typography Scale */
+  .hero-copy h1 { font-size: clamp(2rem, 8vw, 2.75rem); }
+  .section-heading h2, .benefit-copy h2, .contact-copy h2, .quote-banner h2 {
+    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+  }
+  .brand-main { font-size: 1rem; letter-spacing: 0.16em; }
+
+  /* Stats Row 2x2 Grid */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 20px;
+  }
+  .stats-row div { min-width: auto; }
+  .stats-row strong { font-size: 1.35rem; }
+
+  /* Hero Video Controls */
+  .hero-video-controls-badge {
+    right: 16px;
+    bottom: 16px;
+  }
+  .hero-video-toggle-btn {
+    padding: 6px 10px;
+    font-size: 0.72rem;
+  }
+
+  /* Technology Pipeline Flow */
+  .tech-pipeline-strip {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    border-radius: 18px;
+  }
+  .pipeline-item {
+    justify-content: center;
+    padding: 8px 12px;
+  }
+  .pipeline-arrow {
+    align-self: center;
+    transform: rotate(90deg);
+  }
+  .tech-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Stepper */
+  .arch-pipeline-stepper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .arch-detail-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+  .arch-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .arch-detail-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .arch-nav-buttons {
+    display: flex;
+    width: 100%;
+  }
+  .arch-nav-buttons button {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Explorer */
+  .explorer-detail-display {
+    padding: 22px 16px;
+    border-radius: 20px;
+  }
+  .explorer-detail-head {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  .explorer-large-icon {
+    align-self: flex-start;
+  }
+  .explorer-detail-title-group h3 {
+    font-size: 1.45rem;
+  }
+  .explorer-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* Models Showcase */
+  .models-showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .model-image-wrap {
+    height: 200px;
+  }
+  .model-card-content {
+    padding: 18px;
+  }
+
+  /* Wind Speed Gauge Track */
+  .gauge-track-container {
+    padding: 16px 12px 34px;
+    border-radius: 16px;
+  }
+  .gauge-pin-dot {
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
+  }
+  .gauge-pin-text {
+    font-size: 0.65rem;
+    top: 22px;
+  }
+  .wind-milestones-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Video Player */
+  .video-hud-overlay {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+  .hud-stats-cluster {
+    display: none;
+  }
+  .custom-video-controls {
+    padding: 16px 12px 10px;
+    gap: 8px;
+  }
+  .time-display {
+    font-size: 0.72rem;
+  }
+  .speed-selector {
+    display: none;
+  }
+  .video-detail-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  /* Calculator */
+  .calculator-dashboard-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+    gap: 20px;
+  }
+  .calc-hero-stat {
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+  .calc-main-num {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+  }
+  .calc-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .calc-metric-box {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+  .calc-cta-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .calc-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .calc-toggle-box {
+    padding: 12px 14px;
+  }
+
+  /* Spec Section & Tables */
+  .spec-table div {
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  .spec-table strong {
+    text-align: left;
+  }
+  .spec-detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    padding: 8px 0;
+  }
+  .spec-row-val {
+    text-align: left;
+  }
+
+  /* Logos & Applications */
+  .logo-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 14px 16px;
+    font-size: 0.68rem;
+  }
+  .applications-modern-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .benefit-visual img {
+    height: 300px;
+  }
+  .app-img-box {
+    height: 180px;
+  }
+
+  /* Contact Form */
+  .contact-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .contact-form {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Order Configurator */
+  .config-step-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+    gap: 16px;
+  }
+  .system-feature-hero {
+    height: 180px;
+  }
+  .system-hero-overlay {
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .system-hero-price {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .system-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 12px;
+    gap: 8px;
+  }
+  .config-finishes-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .config-addon-card {
+    grid-template-columns: 36px 1fr auto;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .addon-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+  .quantity-selector-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+  .quantity-stepper {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .step-btn-row {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+  .step-btn-row button {
+    width: 100%;
+  }
+  .summary-sticky-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+  .summary-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* SCADA Matrix & Power Flow */
+  .aeroleaf-matrix-grid.full-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 8px;
+  }
+  .matrix-toolbar-card {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .matrix-search-box {
+    width: 100%;
+  }
+  .matrix-search-box input {
+    width: 100%;
+  }
+  .matrix-filter-group {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .matrix-filter-group::-webkit-scrollbar {
+    display: none;
+  }
+  .branch-pill-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .power-flow-nodes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .flow-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+  .analytics-summary-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .energy-chart.tall {
+    height: 220px;
+  }
+  .control-action-card {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+  .control-head {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .master-brake-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.84rem;
+    padding: 14px 18px;
+    text-align: center;
+  }
+  .overview-routes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer Mobile */
+  .site-footer-clean {
+    padding: 36px 16px 20px;
+  }
+  .footer-clean-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .footer-hero-btn-row {
+    flex-direction: column;
+  }
+  .footer-clean-btn, .footer-clean-sec-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .footer-clean-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .bottom-legal-links {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+/* Extra Small Phones (<= 400px) */
+@media (max-width: 400px) {
+  .topbar {
+    padding: 8px 12px;
+  }
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+  }
+  .brand-main {
+    font-size: 0.92rem;
+    letter-spacing: 0.12em;
+  }
+  .hero-copy h1 {
+    font-size: 2.1rem;
+  }
+  .system-specs-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-summary {
+    grid-template-columns: 1fr;
+  }
+  .cert-metrics-table {
+    grid-template-columns: 1fr;
+  }
+  .brake-btn-label {
+    display: none;
+  }
+  .topbar-action-label {
+    display: none;
+  }
+}
+

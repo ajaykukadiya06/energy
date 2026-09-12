@@ -24,9 +24,9 @@ export function SiteHeader({ isOverlay = false }) {
         <MainNav className="desktop-only-nav" />
 
         <div className="header-actions">
-          <Link className="nav-cta" to="/dashboard">
+          <Link className="nav-cta topbar-cta-btn" to="/dashboard">
             <LogIn size={15} style={{ marginRight: 6 }} />
-            Dashboard Login
+            <span className="nav-cta-text">Dashboard Login</span>
           </Link>
 
           {/* Mobile Menu Button */}

@@ -1,4 +1,3 @@
-﻿import { Link, NavLink } from "react-router-dom";
 import {
   Zap,
   LayoutDashboard,
@@ -10,6 +9,7 @@ import {
   FileSpreadsheet,
   LogOut,
   ArrowLeft,
+  X,
 } from "lucide-react";
 
 export function DashboardSidebar({
@@ -17,21 +17,53 @@ export function DashboardSidebar({
   stormBrakeActive,
   onOpenCertificate,
   onLogout,
+  isOpenMobile = false,
+  onCloseMobile,
 }) {
+  const handleNavClick = () => {
+    if (onCloseMobile) onCloseMobile();
+  };
+
   return (
-    <aside className="scada-sidebar">
-      {/* Sidebar Header / Brand */}
-      <div className="scada-sidebar-header">
-        <Link to="/dashboard" className="sidebar-brand-box" style={{ textDecoration: "none" }}>
-          <div className="sidebar-brand-mark">
-            <Zap size={18} color="#ffffff" />
-          </div>
-          <div className="sidebar-brand-text">
-            <strong>AERIS SCADA</strong>
-            <span>OS v4.8 · IoT Gateway</span>
-          </div>
-        </Link>
-      </div>
+    <>
+      {/* Mobile Drawer Backdrop */}
+      {isOpenMobile && (
+        <div
+          className="scada-sidebar-backdrop"
+          onClick={onCloseMobile}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside className={`scada-sidebar ${isOpenMobile ? "is-mobile-open" : ""}`}>
+        {/* Sidebar Header / Brand */}
+        <div className="scada-sidebar-header">
+          <Link
+            to="/dashboard"
+            className="sidebar-brand-box"
+            style={{ textDecoration: "none" }}
+            onClick={handleNavClick}
+          >
+            <div className="sidebar-brand-mark">
+              <Zap size={18} color="#ffffff" />
+            </div>
+            <div className="sidebar-brand-text">
+              <strong>AERIS SCADA</strong>
+              <span>OS v4.8 · IoT Gateway</span>
+            </div>
+          </Link>
+
+          {onCloseMobile && (
+            <button
+              type="button"
+              className="scada-mobile-close-btn"
+              onClick={onCloseMobile}
+              aria-label="Close SCADA Menu"
+            >
+              <X size={18} />
+            </button>
+          )}
+        </div>
 
       {/* Node Selector / Status Card */}
       <div className="sidebar-node-card">
@@ -58,6 +90,7 @@ export function DashboardSidebar({
         <NavLink
           to="/dashboard"
           end
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <LayoutDashboard size={17} />
@@ -66,6 +99,7 @@ export function DashboardSidebar({
 
         <NavLink
           to="/dashboard/matrix"
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <Grid3X3 size={17} />
@@ -75,6 +109,7 @@ export function DashboardSidebar({
 
         <NavLink
           to="/dashboard/microgrid"
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <BatteryCharging size={17} />
@@ -83,6 +118,7 @@ export function DashboardSidebar({
 
         <NavLink
           to="/dashboard/weather"
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <Wind size={17} />
@@ -93,6 +129,7 @@ export function DashboardSidebar({
 
         <NavLink
           to="/dashboard/analytics"
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <BarChart3 size={17} />
@@ -101,6 +138,7 @@ export function DashboardSidebar({
 
         <NavLink
           to="/dashboard/controls"
+          onClick={handleNavClick}
           className={({ isActive }) => `scada-nav-btn ${isActive ? "active" : ""}`}
         >
           <ShieldCheck size={17} />
@@ -113,7 +151,10 @@ export function DashboardSidebar({
         <button
           type="button"
           className="sidebar-esg-btn"
-          onClick={onOpenCertificate}
+          onClick={() => {
+            if (onCloseMobile) onCloseMobile();
+            onOpenCertificate();
+          }}
         >
           <FileSpreadsheet size={15} />
           <span>ESG Certificate</span>
@@ -137,10 +178,11 @@ export function DashboardSidebar({
           </button>
         </div>
 
-        <Link to="/" className="sidebar-back-home">
+        <Link to="/" className="sidebar-back-home" onClick={handleNavClick}>
           <ArrowLeft size={13} /> Exit to Aeris Portal
         </Link>
       </div>
     </aside>
+    </>
   );
 }
