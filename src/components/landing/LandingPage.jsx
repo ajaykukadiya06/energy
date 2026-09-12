@@ -8,7 +8,11 @@ import { VideoShowcase } from "./VideoShowcase";
 import { TreeFeatureExplorer } from "./TreeFeatureExplorer";
 import { TreeCustomizer } from "./TreeCustomizer";
 import { WindTreeCalculator } from "./WindTreeCalculator";
-import { benefitCards, clientLogos, projectCards, testimonials, useCases } from "./site-data";
+import { TechArchitectureDiagram } from "./TechArchitectureDiagram";
+import { SpecTabsSection } from "./SpecTabsSection";
+import { WindSpeedGauge } from "./WindSpeedGauge";
+import { ApplicationsGrid } from "./ApplicationsGrid";
+import { clientLogos, projectCards, testimonials } from "./site-data";
 import {
   Play,
   Pause,
@@ -24,6 +28,13 @@ import {
   Activity,
   Zap,
   Wind,
+  Compass,
+  Layers,
+  Cpu,
+  CheckCircle2,
+  Building2,
+  TreePine,
+  Sun,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -54,7 +65,7 @@ export default function LandingPage() {
       <SiteHeader isOverlay />
 
       <main>
-        {/* Hero Section with Video Background */}
+        {/* 1. HERO SECTION */}
         <section className="hero" id="home">
           <div className="hero-video-bg-wrap">
             <video
@@ -73,50 +84,53 @@ export default function LandingPage() {
 
           <div className="hero-copy">
             <div className="hero-badge-tag">
-              <span className="live-dot" /> Next-Gen Urban Energy
+              <span className="live-dot" /> 10.8–36 kW System Configurations
             </div>
-            <h1>Beautiful wind energy for modern cities.</h1>
+            <span className="eyebrow" style={{ color: "#b8e39c", marginBottom: 6 }}>
+              AERIS WINDTREE
+            </span>
+            <h1>Energy, shaped by nature.</h1>
             <p>
-              Aeris Wind Trees transform urban airflow into silent, continuous clean power while blending
-              sculpturally into parks, campuses, corporate plazas, and sustainable architectural developments.
+              Biomimetic vertical-axis wind technology designed for clean energy generation in urban
+              and architectural environments.
             </p>
 
             <div className="cta-row">
-              <Link className="primary-button hero-cta-btn" to="/order">
-                Request a quote <ArrowRight size={16} style={{ marginLeft: 6 }} />
-              </Link>
-              <a className="secondary-button hero-secondary-btn" href="#video-demo">
-                Watch in motion <ChevronDown size={16} style={{ marginLeft: 4 }} />
+              <a className="primary-button hero-cta-btn" href="#technology">
+                Explore Technology <ArrowRight size={16} style={{ marginLeft: 6 }} />
+              </a>
+              <a className="secondary-button hero-secondary-btn" href="#specifications">
+                View Specifications <ChevronDown size={16} style={{ marginLeft: 4 }} />
               </a>
             </div>
 
             <div className="stats-row">
               <div>
-                <strong>2.0 m/s</strong>
-                <span>Cut-in speed</span>
+                <strong>2.5 m/s</strong>
+                <span>Starting Cut-in</span>
               </div>
               <div>
-                <strong>&lt; 28 dB</strong>
-                <span>Whisper quiet</span>
+                <strong>360°</strong>
+                <span>Omni-Directional</span>
               </div>
               <div>
-                <strong>24/7</strong>
-                <span>Clean generation</span>
+                <strong>Direct Drive</strong>
+                <span>Low-Noise PMG</span>
               </div>
               <div>
-                <strong>25+ Yrs</strong>
-                <span>Design lifespan</span>
+                <strong>10.8–36 kW</strong>
+                <span>Modular Scalability</span>
               </div>
             </div>
           </div>
 
-          {/* Hero Video Controls Bar */}
+          {/* Hero Video Controls */}
           <div className="hero-video-controls-badge">
             <button
               type="button"
               className="hero-video-toggle-btn"
               onClick={toggleHeroVideoPlay}
-              aria-label={heroVideoPlaying ? "Pause background video" : "Play background video"}
+              aria-label={heroVideoPlaying ? "Pause video" : "Play video"}
             >
               {heroVideoPlaying ? (
                 <>
@@ -134,7 +148,7 @@ export default function LandingPage() {
               type="button"
               className="hero-video-toggle-btn"
               onClick={toggleHeroVideoMute}
-              aria-label={heroVideoMuted ? "Unmute video audio" : "Mute video audio"}
+              aria-label={heroVideoMuted ? "Unmute audio" : "Mute audio"}
             >
               {heroVideoMuted ? (
                 <>
@@ -152,86 +166,162 @@ export default function LandingPage() {
         </section>
 
         {/* Client Logos Strip */}
-        <section className="logo-strip" aria-label="Trusted project partners">
+        <section className="logo-strip" aria-label="Project partners">
           {clientLogos.map((logo) => (
             <span key={logo}>{logo}</span>
           ))}
         </section>
 
-        {/* Live Video Showcase Section */}
+        {/* 2. TECHNOLOGY SECTION: "A NEW FORM OF WIND ENERGY" */}
+        <Reveal className="section" id="technology">
+          <div className="section-heading center">
+            <span className="eyebrow">A New Form of Wind Energy</span>
+            <h2>Compact vertical-axis micro-turbines integrated into a sculptural tree.</h2>
+            <p className="customizer-subhead">
+              Aeris WindTree uses a collection of compact vertical-axis micro-wind turbines integrated into a
+              tree-inspired structural system designed for the built environment.
+            </p>
+          </div>
+
+          {/* Flow Banner */}
+          <div className="tech-pipeline-strip">
+            <div className="pipeline-item">
+              <Wind size={15} />
+              <span>Wind</span>
+            </div>
+            <ArrowRight size={14} className="pipeline-arrow" />
+            <div className="pipeline-item">
+              <Zap size={15} />
+              <span>Aeroleaf Turbine</span>
+            </div>
+            <ArrowRight size={14} className="pipeline-arrow" />
+            <div className="pipeline-item">
+              <Cpu size={15} />
+              <span>Permanent-Magnet Generator</span>
+            </div>
+            <ArrowRight size={14} className="pipeline-arrow" />
+            <div className="pipeline-item">
+              <Layers size={15} />
+              <span>DC Collection &amp; Regulation</span>
+            </div>
+            <ArrowRight size={14} className="pipeline-arrow" />
+            <div className="pipeline-item">
+              <Zap size={15} />
+              <span>Inverter</span>
+            </div>
+            <ArrowRight size={14} className="pipeline-arrow" />
+            <div className="pipeline-item highlight">
+              <Building2 size={15} />
+              <span>Usable Electricity</span>
+            </div>
+          </div>
+
+          {/* 6 Technology Cards */}
+          <div className="tech-cards-grid" style={{ marginTop: 32 }}>
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <Wind size={22} color="#2d6a4d" />
+              </div>
+              <h3>Vertical Axis</h3>
+              <p>Captures wind from multiple directions without requiring a conventional yaw mechanism.</p>
+            </article>
+
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <Compass size={22} color="#2d6a4d" />
+              </div>
+              <h3>360° Wind Capture</h3>
+              <p>Designed to receive turbulent, multi-directional airflow common in dense urban streets and squares.</p>
+            </article>
+
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <Zap size={22} color="#2d6a4d" />
+              </div>
+              <h3>Direct Drive</h3>
+              <p>No conventional gearbox or belt transmission, eliminating mechanical wear and gear whine.</p>
+            </article>
+
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <Cpu size={22} color="#2d6a4d" />
+              </div>
+              <h3>Permanent-Magnet Generator</h3>
+              <p>Synchronous micro-generator directly coupled to the rotor converting kinetic spin to 48V electricity.</p>
+            </article>
+
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <Layers size={22} color="#2d6a4d" />
+              </div>
+              <h3>Intelligent Regulation</h3>
+              <p>Integrated electronic card calculates optimal voltage and current instructions every 10 milliseconds.</p>
+            </article>
+
+            <article className="tech-feature-card">
+              <div className="tech-card-icon">
+                <TrendingUp size={22} color="#2d6a4d" />
+              </div>
+              <h3>Modular Architecture</h3>
+              <p>Multiple turbine modules can be scaled from single leaves (300 W) up to multi-tree civic arrays.</p>
+            </article>
+          </div>
+        </Reveal>
+
+        {/* 3. ELECTRICAL & MECHANICAL ARCHITECTURE DIAGRAM */}
+        <Reveal className="section">
+          <TechArchitectureDiagram />
+        </Reveal>
+
+        {/* 4. AEROLEAF ANATOMY & FEATURE EXPLORER */}
+        <Reveal className="section" id="aeroleaf">
+          <TreeFeatureExplorer />
+        </Reveal>
+
+        {/* 5. POWER SECTION & PRODUCT LINEUP */}
+        <Reveal className="section" id="models">
+          <TreeCustomizer />
+
+          {/* Important Engineering Capacity Disclaimer */}
+          <div className="power-disclaimer-card" style={{ marginTop: 24 }}>
+            <ShieldCheck size={20} color="#2d6a4d" style={{ flexShrink: 0 }} />
+            <span>
+              <strong>System Capacity & Output Note:</strong> System capacity varies by configuration (from 10.8 kW up to 36 kW).
+              Actual annual energy production depends on site-specific wind velocity distributions, terrain roughness, and local building aerodynamic interference.
+            </span>
+          </div>
+        </Reveal>
+
+        {/* 6. WIND PERFORMANCE GAUGE & OPERATING LIMITS */}
+        <Reveal className="section">
+          <WindSpeedGauge />
+        </Reveal>
+
+        {/* 7. LIVE VIDEO SHOWCASE */}
         <Reveal className="section video-section-wrapper" id="video-demo">
           <VideoShowcase />
         </Reveal>
 
-        {/* Feature Explorer / Anatomy Section */}
-        <Reveal className="section" id="product">
-          <TreeFeatureExplorer />
-        </Reveal>
-
-        {/* Wind Tree Interactive Design Studio / Customizer */}
-        <Reveal className="section" id="customizer">
-          <TreeCustomizer />
-        </Reveal>
-
-        {/* Architecture & Benefits Section */}
-        <Reveal className="section benefit-section" id="benefits">
-          <div className="benefit-layout">
-            <div className="benefit-copy">
-              <span className="eyebrow">Architectural Integration</span>
-              <h2>Designed to harmonize with nature while powering the future.</h2>
-              <p>
-                The Wind Tree concept delivers distributed renewable energy without the harsh visual
-                intrusion or acoustic noise of traditional industrial turbines. It creates a landmark focal point
-                for eco-conscious developers, campuses, and forward-thinking cities.
-              </p>
-
-              <ul className="check-list">
-                <li>Omni-directional Aeroleafs capture 360° turbulence from ground micro-drafts</li>
-                <li>Operates at whisper-quiet sound levels lower than ambient background conversation</li>
-                <li>100% bird, bat, and urban wildlife safe with enclosed rotating profiles</li>
-                <li>Modular scalability from individual Aeroleaf units to multi-tree smart microgrid arrays</li>
-                <li>Full IoT edge telemetry with real-time cloud dashboard monitoring</li>
-              </ul>
-
-              <div className="benefit-cta-box">
-                <Link to="/benefits" className="primary-button">
-                  Explore full benefits <ArrowRight size={16} style={{ marginLeft: 6 }} />
-                </Link>
-              </div>
-            </div>
-
-            <div className="benefit-visual">
-              <img src="/images/windtree_dubai.jpg" alt="Wind tree in modern architectural setting" />
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Interactive Energy & Savings Calculator */}
+        {/* 8. INTERACTIVE ENERGY & SAVINGS CALCULATOR */}
         <Reveal className="section" id="calculator">
           <WindTreeCalculator />
         </Reveal>
 
-        {/* Applications / Use Cases */}
-        <Reveal className="section usecases-section">
-          <div className="section-heading center">
-            <span className="eyebrow">Versatile Applications</span>
-            <h2>Engineered for every modern infrastructure environment.</h2>
-          </div>
-
-          <div className="usecase-grid">
-            {useCases.map((item) => (
-              <div className="usecase-pill" key={item}>
-                {item}
-              </div>
-            ))}
-          </div>
+        {/* 9. TABBED TECHNICAL SPECIFICATIONS */}
+        <Reveal className="section" id="specifications">
+          <SpecTabsSection />
         </Reveal>
 
-        {/* Real Projects Showcase */}
+        {/* 10. BUILT ENVIRONMENT APPLICATIONS */}
+        <Reveal className="section" id="applications">
+          <ApplicationsGrid />
+        </Reveal>
+
+        {/* 11. GLOBAL PROJECTS SHOWCASE */}
         <Reveal className="section projects-section" id="projects">
           <div className="section-heading">
-            <span className="eyebrow">Global Deployments</span>
-            <h2>Real installations, measurable clean energy impact.</h2>
+            <span className="eyebrow">Project Deployments</span>
+            <h2>Architectural landmarks producing clean local energy.</h2>
           </div>
 
           <div className="project-grid">
@@ -247,41 +337,42 @@ export default function LandingPage() {
           </div>
         </Reveal>
 
-        {/* Live Telemetry Metrics */}
-        <Reveal className="section metrics-section">
-          <div className="section-heading">
-            <span className="eyebrow">Fleet Intelligence</span>
-            <h2>Real-time performance across connected installations.</h2>
-          </div>
-          <div className="metrics-grid">
-            <article>
-              <strong>18.4 MWh</strong>
-              <span>clean energy generated</span>
-              <small>+12.8% this quarter</small>
-            </article>
-            <article>
-              <strong>1,240 t</strong>
-              <span>CO₂ avoided annually</span>
-              <small>Across active projects</small>
-            </article>
-            <article>
-              <strong>99.4%</strong>
-              <span>system availability</span>
-              <small>Last 12 months</small>
-            </article>
-            <article>
-              <strong>42+</strong>
-              <span>connected installations</span>
-              <small>Across 8 countries</small>
-            </article>
+        {/* 12. SUSTAINABILITY & LIFESPAN SECTION */}
+        <Reveal className="section sustainability-section">
+          <div className="benefit-layout">
+            <div className="benefit-copy">
+              <span className="eyebrow">Engineered for Longevity</span>
+              <h2>Built for long-term outdoor operation.</h2>
+              <p>
+                Every Aeris WindTree is manufactured from high-tensile marine steel with C5 anti-corrosive
+                powder coating and sealed, weatherproof generator encapsulation to resist rain, snow, sand, and coastal salt air.
+              </p>
+
+              <ul className="check-list">
+                <li>Direct-drive architecture eliminates high-wear mechanical gearboxes and drive belts</li>
+                <li>Operates at low-noise decibel levels suited for urban pedestrian squares and hospitality</li>
+                <li>Parallel electrical architecture ensures redundant, independent leaf generation</li>
+                <li>Optional Hybrid Photovoltaic Solar Petals for combined 24/7 breeze + daytime solar power</li>
+              </ul>
+
+              <div className="benefit-cta-box">
+                <Link to="/order" className="primary-button">
+                  Configure Your Installation <ArrowRight size={16} style={{ marginLeft: 6 }} />
+                </Link>
+              </div>
+            </div>
+
+            <div className="benefit-visual">
+              <img src="/images/windtree_dubai.jpg" alt="Wind tree in architectural setting" />
+            </div>
           </div>
         </Reveal>
 
-        {/* Testimonials */}
+        {/* 13. TESTIMONIALS */}
         <Reveal className="section testimonials-section">
           <div className="section-heading center">
-            <span className="eyebrow">Trusted by design leaders</span>
-            <h2>Renewable infrastructure that communities love to share.</h2>
+            <span className="eyebrow">Trusted by Design & Sustainability Leaders</span>
+            <h2>Renewable infrastructure communities take pride in.</h2>
           </div>
           <div className="testimonial-grid">
             {testimonials.map((item) => (
@@ -295,25 +386,25 @@ export default function LandingPage() {
           </div>
         </Reveal>
 
-        {/* Quote Banner */}
+        {/* 14. CALL TO ACTION BANNER */}
         <Reveal className="section quote-banner">
           <div>
-            <span className="eyebrow">Bring Clean Power to Life</span>
-            <h2>Elevate your next development with iconic renewable energy.</h2>
+            <span className="eyebrow">Begin Your Project Feasibility</span>
+            <h2>Bring iconic renewable energy to your next development.</h2>
           </div>
           <Link className="primary-button" to="/order">
-            Request a Custom Proposal <ArrowRight size={16} style={{ marginLeft: 6 }} />
+            Request Engineering Proposal <ArrowRight size={16} style={{ marginLeft: 6 }} />
           </Link>
         </Reveal>
 
-        {/* Contact Form Section */}
+        {/* 15. CONTACT FORM */}
         <Reveal className="section contact-section" id="contact">
           <div className="contact-copy">
             <span className="eyebrow">Let&apos;s collaborate</span>
             <h2>Request a custom proposal for your site.</h2>
             <p>
               Tell us about your location, wind conditions, and energy targets. Our engineering team
-              will prepare a comprehensive site feasibility and 3D layout simulation.
+              will prepare a comprehensive site feasibility assessment and 3D CFD airflow simulation.
             </p>
           </div>
 

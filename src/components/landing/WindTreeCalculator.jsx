@@ -9,6 +9,7 @@ import {
   ArrowRight,
   Sparkles,
   Zap,
+  Sun,
   Layers,
 } from "lucide-react";
 
@@ -17,19 +18,28 @@ export function WindTreeCalculator() {
   const [avgWindSpeed, setAvgWindSpeed] = useState(5.5); // in m/s
   const [costPerKwh, setCostPerKwh] = useState(0.18); // in $ or €
   const [mpptBoost, setMpptBoost] = useState(true);
+  const [hybridSolarPetals, setHybridSolarPetals] = useState(false); // +36 Wp per leaf
 
-  // Formulas for calculations:
-  // Base single Aeroleaf generation @ 5.5 m/s is ~320 kWh/year (300W peak)
-  const windFactor = Math.pow(avgWindSpeed / 5.5, 2.2);
+  // Calculations based on verified 300W Aeroleaf power curve & 2.5 m/s starting threshold:
+  // Base single 300W Aeroleaf wind yield @ 5.5 m/s is ~320 kWh/year
+  const windFactor = avgWindSpeed < 2.5 ? 0 : Math.pow(avgWindSpeed / 5.5, 2.2);
   const boostMultiplier = mpptBoost ? 1.15 : 1.0;
-  const singleLeafKwh = 320 * windFactor * boostMultiplier;
-  const totalAnnualKwh = Math.round(singleLeafKwh * aeroleafCount);
+  const singleLeafWindKwh = 320 * windFactor * boostMultiplier;
+
+  // Hybrid Solar Petal generation (~45 kWh/yr per 36 Wp petal based on 1250 peak sun hours):
+  const singleLeafSolarKwh = hybridSolarPetals ? 45 : 0;
+
+  const totalSingleLeafKwh = singleLeafWindKwh + singleLeafSolarKwh;
+  const totalAnnualKwh = Math.round(totalSingleLeafKwh * aeroleafCount);
 
   // System Peak Capacity
-  const systemPeakKw = ((aeroleafCount * 300) / 1000).toFixed(1);
+  const leafWattage = hybridSolarPetals ? 336 : 300;
+  const systemPeakKw = ((aeroleafCount * leafWattage) / 1000).toFixed(1);
 
   // Approximate modular equipment investment
-  const estimatedHardwareCost = aeroleafCount * (aeroleafCount === 1 ? 850 : aeroleafCount <= 3 ? 800 : 750);
+  const baseCostPerLeaf = aeroleafCount === 1 ? 850 : aeroleafCount <= 3 ? 800 : 750;
+  const solarAddonCost = hybridSolarPetals ? 120 : 0;
+  const estimatedHardwareCost = aeroleafCount * (baseCostPerLeaf + solarAddonCost);
 
   // Carbon avoided: ~0.42 kg CO2 per kWh
   const co2AvoidedTons = ((totalAnnualKwh * 0.42) / 1000).toFixed(1);
@@ -50,7 +60,7 @@ export function WindTreeCalculator() {
         <h2>Calculate clean micro-wind generation potential.</h2>
         <p className="calculator-subhead">
           Estimate annual power yield, direct energy bill savings, and carbon reduction scaled from a single
-          Aeroleaf micro-turbine up to full multi-tree civic arrays.
+          300 W Aeroleaf up to 36A flagship trees and civic multi-tree arrays.
         </p>
       </div>
 
@@ -80,7 +90,7 @@ export function WindTreeCalculator() {
             <div className="calc-range-labels">
               <span>1 (Starter)</span>
               <span>12 (Bush)</span>
-              <span>36 (1 Tree)</span>
+              <span>36 (36A Tree)</span>
               <span>72 (2 Trees)</span>
               <span>108 (3 Trees)</span>
             </div>
@@ -88,12 +98,12 @@ export function WindTreeCalculator() {
             {/* Quick Preset Buttons */}
             <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "10px" }}>
               {[
-                { label: "1 Unit", count: 1 },
-                { label: "3 Branch", count: 3 },
-                { label: "12 Bush", count: 12 },
-                { label: "18 Modular", count: 18 },
-                { label: "36 Tree", count: 36 },
-                { label: "72 Dual", count: 72 },
+                { label: "1 Unit (0.3 kW)", count: 1 },
+                { label: "3 Branch (0.9 kW)", count: 3 },
+                { label: "12 Bush (3.6 kW)", count: 12 },
+                { label: "18 Modular (5.4 kW)", count: 18 },
+                { label: "36 Tree (10.8 kW)", count: 36 },
+                { label: "72 Dual (21.6 kW)", count: 72 },
               ].map((p) => (
                 <button
                   key={p.count}
@@ -135,7 +145,7 @@ export function WindTreeCalculator() {
               className="calc-range-slider"
             />
             <div className="calc-range-labels">
-              <span>2.0 m/s (Cut-In)</span>
+              <span>2.5 m/s (Cut-In)</span>
               <span>5.5 m/s (Moderate)</span>
               <span>9.0 m/s (Breezy)</span>
             </div>
@@ -184,6 +194,25 @@ export function WindTreeCalculator() {
               <span className="toggle-thumb" />
             </button>
           </div>
+
+          <div className="calc-toggle-box" style={{ marginTop: 10 }}>
+            <div className="toggle-info">
+              <strong>
+                <Sun size={15} style={{ marginRight: 5, verticalAlign: "middle" }} />
+                Hybrid Solar Petals (+36 Wp / Leaf)
+              </strong>
+              <small>Dual wind + solar generation (336 W combined nameplate per Aeroleaf)</small>
+            </div>
+            <button
+              type="button"
+              className={`toggle-switch-btn ${hybridSolarPetals ? "active" : ""}`}
+              onClick={() => setHybridSolarPetals(!hybridSolarPetals)}
+              aria-pressed={hybridSolarPetals}
+              aria-label="Toggle Hybrid Solar Petals"
+            >
+              <span className="toggle-thumb" />
+            </button>
+          </div>
         </div>
 
         {/* Results Metrics Panel */}
@@ -195,7 +224,7 @@ export function WindTreeCalculator() {
             </strong>
             <span className="calc-est-badge">
               <Wind size={13} style={{ marginRight: 4, verticalAlign: "middle" }} />
-              100% Pure Aeroleaf® Omni-Directional Wind Power
+              {hybridSolarPetals ? "Hybrid Wind (300W) + Solar Petals (36Wp)" : "100% Direct-Drive 48V Aeroleaf® Wind Power"}
             </span>
           </div>
 
@@ -229,7 +258,7 @@ export function WindTreeCalculator() {
               <div>
                 <span className="metric-label">Homes Equivalent</span>
                 <strong className="metric-val">{homesPowered} Homes</strong>
-                <small>Powered continuously</small>
+                <small>Urban base load support</small>
               </div>
             </div>
 
@@ -248,7 +277,9 @@ export function WindTreeCalculator() {
           <div className="calc-cta-footer">
             <div>
               <strong>Modular Unit Pricing from $850 / Leaf</strong>
-              <p>Estimated hardware baseline: ~${estimatedHardwareCost.toLocaleString()} ({aeroleafCount} Aeroleafs)</p>
+              <p>
+                Estimated hardware baseline: ~${estimatedHardwareCost.toLocaleString()} ({aeroleafCount} Units · {systemPeakKw} kW Peak)
+              </p>
             </div>
             <Link to="/order" className="primary-button calc-cta-btn">
               Configure & Order <ArrowRight size={16} style={{ marginLeft: 6 }} />

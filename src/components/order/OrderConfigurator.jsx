@@ -22,22 +22,24 @@ import {
   Ruler,
   Cpu,
   Check,
+  Sun,
 } from "lucide-react";
 
 const WIND_TREE_SPEC = {
-  id: "wind-tree-36",
-  name: "Aeris Wind Tree 36",
-  subtitle: "Turnkey Clean Energy Infrastructure System",
+  id: "wind-tree-36a",
+  name: "Aeris Wind Tree 36A",
+  subtitle: "Documented 36-Aeroleaf Biomimetic Clean Energy System",
   leafCount: 36,
-  height: "9.8 m (32 ft)",
-  footprint: "3.8 m² (41 sq ft)",
+  height: "9.8 m H × 8.0 m Ø",
+  footprint: "3.8 m² base (3,590 kg Marine Steel)",
   peakOutputKw: 10.8,
+  nominalPowerKw: 5.868,
   annualKwhBase: 11500,
   basePrice: 36000,
   image: "/images/hero-wind-tree.jpg",
-  noiseLevel: "< 28 dB(A)",
-  windRating: "Class 3 Hurricane (180 km/h)",
-  warranty: "25-Year Marine Steel Structure",
+  noiseLevel: "Low-Noise Direct Drive",
+  windRating: "43 m/s Cont. / 50 m/s Gust (180 km/h)",
+  warranty: "High-Tensile C5 Marine Steel Structure",
 };
 
 const FINISHES = [
@@ -77,17 +79,25 @@ const FINISHES = [
 
 const INFRASTRUCTURE_ADDONS = [
   {
+    id: "solar-petals",
+    name: "Hybrid Photovoltaic Solar Petals (36x)",
+    desc: "Adds 36 Wp bifacial solar petals per leaf (+1,296 Wp total tree capacity, +1,600 kWh/yr)",
+    icon: Sun,
+    price: 4200,
+    kwhBoost: 1600,
+  },
+  {
     id: "smart-mppt",
     name: "MPPT Micro-Inverter Direct Grid Hub",
-    desc: "Per-leaf Maximum Power Point Tracking with direct sine wave grid synchronization (+350 kWh/yr)",
+    desc: "Per-leaf Maximum Power Point Tracking with 10ms micro-regulation & sine wave conversion (+450 kWh/yr)",
     icon: Zap,
     price: 1800,
-    kwhBoost: 350,
+    kwhBoost: 450,
   },
   {
     id: "storm-brake",
-    name: "Active Magnetic Storm-Braking Pack",
-    desc: "Automated electronic overspeed damping for extreme hurricane winds up to 180 km/h",
+    name: "Active Eddy-Current Storm-Braking Pack",
+    desc: "Automated electromagnetic overspeed governor for extreme typhoon gusts up to 180 km/h",
     icon: Wind,
     price: 1200,
     kwhBoost: 0,

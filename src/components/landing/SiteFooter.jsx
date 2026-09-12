@@ -141,6 +141,13 @@ export function SiteFooter() {
         </div>
       </div>
 
+      {/* Technical Specifications Disclaimer */}
+      <div className="footer-disclaimer-strip">
+        <p>
+          <strong>Technical specifications:</strong> Certain specifications presented on this website are based on publicly available New World Wind Aeroleaf® and WindTree® technical documentation and are provided for technology reference. Aeris system specifications may vary by configuration. Actual energy production depends on site-specific wind conditions, system configuration, installation conditions and electrical losses. Final performance should be determined through a site assessment and applicable engineering documentation.
+        </p>
+      </div>
+
       {/* Clean Bottom Bar */}
       <div className="footer-clean-bottom">
         <div className="bottom-meta">

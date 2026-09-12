@@ -1,4 +1,4 @@
-﻿import { useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { Wind, Compass, Volume2, Thermometer } from "lucide-react";
 
 export function WeatherView() {
@@ -19,13 +19,13 @@ export function WeatherView() {
           <div className="wind-scale-bar">
             <div
               className="wind-scale-pin"
-              style={{ left: `${Math.min(100, (windSpeed / 20) * 100)}%` }}
+              style={{ left: `${Math.min(100, (windSpeed / 25) * 100)}%` }}
             />
           </div>
           <div className="wind-scale-labels">
-            <span>2.0 m/s (Cut-in)</span>
+            <span>2.5 m/s (Cut-in)</span>
             <span>10.0 m/s (Nominal)</span>
-            <span>18.0 m/s (Cut-out)</span>
+            <span>43.0 m/s (Continuous Limit)</span>
           </div>
         </div>
 

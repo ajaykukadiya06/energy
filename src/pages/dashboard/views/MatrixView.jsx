@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Search, CheckCircle2, RefreshCw } from "lucide-react";
 
@@ -99,15 +99,19 @@ export function MatrixView() {
           <div className="leaf-diagnostics-list">
             <div className="diag-item">
               <span>Rotor Velocity</span>
-              <strong>{selectedLeaf.rpm} RPM</strong>
+              <strong>{selectedLeaf.rpm} RPM <small style={{ color: "var(--muted)" }}>(Max 850)</small></strong>
             </div>
             <div className="diag-item">
               <span>Instant Power Output</span>
               <strong>{selectedLeaf.powerWatts} Watts</strong>
             </div>
             <div className="diag-item">
-              <span>Inverter Efficiency</span>
-              <strong>{selectedLeaf.efficiency}%</strong>
+              <span>Terminal Voltage</span>
+              <strong>48.2 V DC (Rectified)</strong>
+            </div>
+            <div className="diag-item">
+              <span>Electronic Regulation</span>
+              <strong>10 ms Micro-Loop Active</strong>
             </div>
             <div className="diag-item">
               <span>Bearing Temperature</span>
@@ -115,15 +119,11 @@ export function MatrixView() {
             </div>
             <div className="diag-item">
               <span>Vibration Acceleration</span>
-              <strong>{selectedLeaf.vibrationMm} mm/s (Peak)</strong>
+              <strong>{selectedLeaf.vibrationMm} mm/s (Nominal)</strong>
             </div>
             <div className="diag-item">
-              <span>Sub-Generator Type</span>
-              <strong>Direct-Drive PMG</strong>
-            </div>
-            <div className="diag-item">
-              <span>Rotor Bearing Lifespan</span>
-              <strong>24.2 Years Remaining</strong>
+              <span>Generator Architecture</span>
+              <strong>Direct-Drive PMG (No Gears)</strong>
             </div>
           </div>
 

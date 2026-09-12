@@ -54,11 +54,11 @@ export default function BenefitsPage() {
           <article className="route-card">
             <h3>
               <Volume2 size={20} color="#2d6a4d" style={{ marginRight: 8, verticalAlign: "middle" }} />
-              Safe & Silent Operation
+              Low-Noise Urban Direct-Drive
             </h3>
             <p>
-              Whisper-quiet acoustic sound (&lt;28 dB) with vertical rotating Aeroleafs that are 100% visible
-              and safe for birds, bats, and local biodiversity.
+              Direct-drive permanent magnet synchronous generators eliminate gearbox friction and mechanical whine,
+              ensuring an acoustically benign presence suited for pedestrian plazas, campuses, and parks.
             </p>
           </article>
         </section>

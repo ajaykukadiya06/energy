@@ -27,8 +27,8 @@ export default function ProductPage() {
           <span className="eyebrow">Product & Engineering</span>
           <h1>Wind trees designed to feel natural in every landscape.</h1>
           <p>
-            Our patented technology pairs bio-inspired architectural form with whisper-quiet micro-turbine
-            performance, turning turbulent city airflow into clean, reliable power.
+            Our technology pairs biomimetic architectural form with low-noise vertical-axis micro-turbines,
+            capturing 360° airflow and turning turbulent city micro-drafts into clean power.
           </p>
         </section>
 
@@ -52,34 +52,34 @@ export default function ProductPage() {
             <span className="eyebrow">Wind Tree technology</span>
             <h2>Small-scale generation, engineered as one connected system.</h2>
             <p className="technology-intro">
-              Each installation combines aerodynamic Aeroleaf modules, a direct-drive generator,
-              power electronics, and cloud telemetry so teams can track performance 24/7.
+              Each installation combines aerodynamic Aeroleaf modules, a direct-drive synchronous permanent-magnet generator,
+              power electronics with 10ms micro-regulation, and cloud telemetry.
             </p>
           </div>
 
           <div className="technology-grid">
             <article className="technology-card">
               <span className="technology-number">01</span>
-              <h3>Capture</h3>
+              <h3>Capture (360° Omnidirectional)</h3>
               <p>
-                Leaf-shaped vertical-axis modules respond to changing wind directions without needing
-                yaw motors or turning mechanisms.
+                Double-blade vertical-axis Aeroleaf modules respond to changing wind directions from any angle
+                without yaw motors or turning mechanisms, starting at just 2.5 m/s (9 km/h).
               </p>
             </article>
             <article className="technology-card">
               <span className="technology-number">02</span>
-              <h3>Convert</h3>
+              <h3>Convert (Direct Drive 48V PMG)</h3>
               <p>
-                A direct-drive permanent magnet generator and MPPT inverter convert variable micro-drafts
-                into stable, usable electricity.
+                Direct-drive synchronous permanent magnet generators produce AC electricity, rectified to 48V DC
+                and regulated with sub-second microcontroller instructions before final inversion.
               </p>
             </article>
             <article className="technology-card">
               <span className="technology-number">03</span>
-              <h3>Connect</h3>
+              <h3>Connect (Grid & BESS Microgrid)</h3>
               <p>
-                Telemetry tracks output, wind speed, system health, and carbon offsets through the
-                Aeris cloud dashboard.
+                Central inverters export clean sine wave power (110V / 230V / 400V) to local buildings, EV charging
+                pedestals, or 15 kWh battery buffers, tracked 24/7 via the SCADA digital twin.
               </p>
             </article>
           </div>
@@ -92,44 +92,56 @@ export default function ProductPage() {
 
         <section className="spec-section">
           <div className="spec-copy">
-            <span className="eyebrow">Indicative Specifications</span>
-            <h2>Designed for projects where performance and place matter equally.</h2>
+            <span className="eyebrow">Verified Technical Specifications</span>
+            <h2>Documented engineering metrics for feasibility and procurement studies.</h2>
             <p>
-              Use these indicative parameters to begin your feasibility study. Final output,
-              foundation engineering, and grid interface are customized for your specific terrain.
+              Based on published WindTree 36A and Aeroleaf datasheets. Final annual generation depends on site wind speed
+              distribution, surface roughness, and installation topography.
             </p>
             <Link to="/order" className="primary-button">
-              Request Site Audit <ArrowRight size={16} style={{ marginLeft: 6 }} />
+              Request Site Audit & CFD Simulation <ArrowRight size={16} style={{ marginLeft: 6 }} />
             </Link>
           </div>
           <div className="spec-table">
             <div>
-              <span>System type</span>
-              <strong>Distributed Biomimetic Vertical-Axis Wind</strong>
+              <span>System Architecture</span>
+              <strong>Vertical-Axis Direct-Drive PMG Micro-Turbines</strong>
             </div>
             <div>
-              <span>Startup Cut-in Speed</span>
-              <strong>2.0 m/s (4.4 mph)</strong>
+              <span>Starting Cut-In Speed</span>
+              <strong>2.5 m/s (9 km/h / 5.6 mph)</strong>
             </div>
             <div>
-              <span>Rated Nominal Wind</span>
-              <strong>10 m/s (22.3 mph)</strong>
+              <span>Continuous Wind Limit</span>
+              <strong>43 m/s (155 km/h / 96 mph)</strong>
             </div>
             <div>
-              <span>Survival Wind Speed</span>
-              <strong>Class 3 (up to 180 km/h / 112 mph)</strong>
+              <span>Survival Gust Rating</span>
+              <strong>50 m/s (180 km/h / 112 mph)</strong>
+            </div>
+            <div>
+              <span>WindTree 36A Capacity</span>
+              <strong>10.8 kW Installed / 5.868 kW Nominal Power</strong>
+            </div>
+            <div>
+              <span>36A Dimensions & Weight</span>
+              <strong>9.8 m H × 8.0 m Ø · 3,590 kg Marine Steel</strong>
+            </div>
+            <div>
+              <span>Per-Aeroleaf Rating</span>
+              <strong>300 W (48V DC) · Max 850 RPM</strong>
+            </div>
+            <div>
+              <span>Hybrid Solar Petal Option</span>
+              <strong>+36 Wp Photovoltaic (336 W Hybrid Module)</strong>
             </div>
             <div>
               <span>Acoustic Signature</span>
-              <strong>&lt; 28 dB(A) at 5 meters</strong>
+              <strong>Low-Noise Urban Direct-Drive (No Gears/Belts)</strong>
             </div>
             <div>
-              <span>Grid Integration</span>
-              <strong>Single/Three Phase 230/400V or Microgrid</strong>
-            </div>
-            <div>
-              <span>Modular Unit Scalability</span>
-              <strong>From 1 Aeroleaf ($850) to 36+ Tree Arrays</strong>
+              <span>Installation & Clearances</span>
+              <strong>2–4 Days · Min 6m Building Clearance</strong>
             </div>
           </div>
         </section>
