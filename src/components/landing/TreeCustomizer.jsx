@@ -12,7 +12,7 @@ const MODELS = [
     peakPower: "300 W (48V PMG)",
     nominalPower: "160 W",
     footprint: "0.2 m²",
-    image: "/images/aeroleaf_micro_generator.jpg",
+    image: "/images/aeroleaf_single.jpg",
     description:
       "Ultra-compact vertical-axis micro-turbine with 360° wind capture. Mounts to rooftop railings, balconies, fence posts, and telecom masts.",
   },
